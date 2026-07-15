@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Registration Form</title>
+</head>
+
+<body>
+
+    <header>
+        <h1>Student Registration Form</h1>
+    </header>
+
+    <main>
+
+        <form method="post">
+
+            <fieldset>
+
+                <legend>Student Details</legend>
+
+                <label for="name">Full Name:</label>
+                <input type="text" id="name" name="fullname" required>
+
+                <br><br>
+
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+
+                <br><br>
+
+                <label for="phone">Mobile Number:</label>
+                <input type="number" id="phone" name="phone">
+
+                <br><br>
+
+                <label for="dob">Date of Birth:</label>
+                <input type="date" id="dob" name="dob">
+
+                <br><br>
+
+                <label>Gender:</label>
+
+                <input type="radio" id="male" name="gender" value="Male">
+                <label for="male">Male</label>
+
+                <input type="radio" id="female" name="gender" value="Female">
+                <label for="female">Female</label>
+
+                <input type="radio" id="other" name="gender" value="Other">
+                <label for="other">Other</label>
+
+                <br><br>
+
+                <label for="course">Course:</label>
+
+                <select id="course" name="course">
+
+                    <option value="">Select Course</option>
+                    <option value="btech">B.Tech</option>
+                    <option value="bca">BCA</option>
+                    <option value="bsc">B.Sc</option>
+                    <option value="bba">BBA</option>
+
+                </select>
+
+                <br><br>
+
+                <label>Skills:</label>
+
+                <input type="checkbox" id="html" name="skills" value="HTML">
+                <label for="html">HTML</label>
+
+                <input type="checkbox" id="css" name="skills" value="CSS">
+                <label for="css">CSS</label>
+
+                <input type="checkbox" id="js" name="skills" value="JavaScript">
+                <label for="js">JavaScript</label>
+
+                <br><br>
+
+                <label for="address">Address:</label>
+
+                <br>
+
+                <textarea id="address" name="address" rows="4" cols="30"></textarea>
+
+                <br><br>
+
+                <input type="submit" value="Register">
+
+                <input type="reset" value="Clear">
+
+            </fieldset>
+
+        </form>
+
+    </main>
+
+    <footer>
+
+        <p>Thank You</p>
+
+    </footer>
+
+</body>
+
+</html>
