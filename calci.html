@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Practical Grade Calculator</title>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-slate-100 min-h-screen flex items-center justify-center p-5">
+
+    <!-- Main Calculator -->
+    <div class="bg-white w-full max-w-md rounded-2xl shadow-xl overflow-hidden">
+
+        <!-- Student Name and USN -->
+        <div class="bg-blue-600 text-white text-center p-4">
+
+            <p class="text-sm">
+                Student Name: <b>TEJASVI VINOD NAGTODE</b>
+            </p>
+
+            <p class="text-sm">
+                USN: <b>IT25113</b>
+            </p>
+
+        </div>
+
+
+        <!-- Calculator Content -->
+        <div class="p-7">
+
+            <!-- Title -->
+            <div class="text-center mb-6">
+
+                <span class="bg-blue-100 text-blue-600 px-3 py-1
+                             rounded-full text-sm font-semibold">
+                    🎓 Student Assessment
+                </span>
+
+                <h1 class="text-3xl font-bold text-slate-800 mt-4">
+                    📚 Grade Calculator
+                </h1>
+
+                <p class="text-gray-500 mt-2">
+                    Calculate your practical performance
+                </p>
+
+            </div>
+
+
+            <!-- Practical 1 -->
+            <div class="mb-4">
+
+                <label class="block text-gray-700 font-semibold mb-2">
+                    Lab Practical 1
+                </label>
+
+                <input
+                    type="number"
+                    id="practical1"
+                    placeholder="Enter marks out of 100"
+                    class="w-full p-3 border border-gray-300 rounded-lg
+                           focus:outline-none focus:ring-2 focus:ring-blue-500">
+
+            </div>
+
+
+            <!-- Practical 2 -->
+            <div class="mb-4">
+
+                <label class="block text-gray-700 font-semibold mb-2">
+                    Lab Practical 2
+                </label>
+
+                <input
+                    type="number"
+                    id="practical2"
+                    placeholder="Enter marks out of 100"
+                    class="w-full p-3 border border-gray-300 rounded-lg
+                           focus:outline-none focus:ring-2 focus:ring-blue-500">
+
+            </div>
+
+
+            <!-- Viva -->
+            <div class="mb-5">
+
+                <label class="block text-gray-700 font-semibold mb-2">
+                    Viva / Oral Exam
+                </label>
+
+                <input
+                    type="number"
+                    id="viva"
+                    placeholder="Enter marks out of 100"
+                    class="w-full p-3 border border-gray-300 rounded-lg
+                           focus:outline-none focus:ring-2 focus:ring-blue-500">
+
+            </div>
+
+
+            <!-- Calculate Button -->
+            <button
+                onclick="calculateResult()"
+                class="w-full bg-blue-600 text-white py-3 rounded-lg
+                       font-semibold hover:bg-blue-700 transition">
+
+                Calculate Result
+
+            </button>
+
+
+            <!-- Result Box -->
+            <div class="mt-6 bg-slate-50 border border-slate-200
+                        rounded-xl p-5">
+
+                <h2 class="font-bold text-slate-700 mb-3">
+                    📊 Your Result
+                </h2>
+
+                <p id="total" class="text-gray-600 mb-2"></p>
+
+                <p id="percentage" class="text-gray-600 mb-2"></p>
+
+                <p id="grade" class="text-blue-600 font-bold text-lg"></p>
+
+                <p id="message" class="text-green-600 font-semibold mt-2"></p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- JavaScript -->
+    <script>
+
+        function calculateResult() {
+
+            // Get marks from input boxes
+            let practical1 = parseFloat(
+                document.getElementById("practical1").value
+            );
+
+            let practical2 = parseFloat(
+                document.getElementById("practical2").value
+            );
+
+            let viva = parseFloat(
+                document.getElementById("viva").value
+            );
+
+
+            // Calculate total marks
+            let total = practical1 + practical2 + viva;
+
+            // Calculate percentage
+            let percentage = total / 3;
+
+            let grade;
+            let message;
+
+
+            // Decide grade
+            if (percentage >= 90) {
+
+                grade = "A+ (Excellent)";
+                message = "🌟 Outstanding performance!";
+
+            }
+            else if (percentage >= 80) {
+
+                grade = "A (Very Good)";
+                message = "👏 Great work! Keep it up.";
+
+            }
+            else if (percentage >= 70) {
+
+                grade = "B (Good)";
+                message = "👍 Good performance!";
+
+            }
+            else if (percentage >= 60) {
+
+                grade = "C (Average)";
+                message = "📖 Keep practicing to improve.";
+
+            }
+            else if (percentage >= 50) {
+
+                grade = "D (Pass)";
+                message = "💪 You passed! Work harder next time.";
+
+            }
+            else {
+
+                grade = "F (Fail)";
+                message = "📚 Don't give up. Keep learning.";
+
+            }
+
+
+            // Display result
+            document.getElementById("total").innerHTML =
+                "Total Marks: " + total.toFixed(1) + " / 300";
+
+            document.getElementById("percentage").innerHTML =
+                "Percentage: " + percentage.toFixed(2) + "%";
+
+            document.getElementById("grade").innerHTML =
+                "Grade: " + grade;
+
+            document.getElementById("message").innerHTML =
+                message;
+
+        }
+
+    </script>
+
+</body>
+
+</html>
