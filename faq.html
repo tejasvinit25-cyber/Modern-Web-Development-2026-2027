@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Student Help Portal</title>
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="min-h-screen bg-gradient-to-br from-indigo-600 via-purple-600 to-pink-500">
+
+    <!-- Main Container -->
+    <div class="max-w-3xl mx-auto px-5 py-12">
+
+        <!-- Header -->
+        <div class="text-center text-white mb-10">
+
+            <div class="text-5xl mb-2">🎓</div>
+
+            <h1 class="text-4xl font-bold mb-3">
+                Student Help Portal
+            </h1>
+
+            <h2 class="text-2xl font-semibold">
+                Name: Tejasvi Nagtode
+                <br>
+                USN:  IT25113
+            </h2>
+            <br>
+
+            <p class="text-lg text-white/80">
+                Frequently Asked Questions
+            </p>
+
+        </div>
+
+
+        <!-- FAQ Section -->
+
+        <!-- FAQ 1 -->
+        <div class="faq bg-white rounded-2xl shadow-lg mb-4 overflow-hidden">
+
+            <button
+                class="question w-full flex justify-between items-center p-5 text-left font-semibold text-gray-800 hover:bg-indigo-50 transition">
+
+                <span>📚 How can I access study materials?</span>
+
+                <span class="arrow text-2xl transition-transform duration-300">
+                    ↓
+                </span>
+
+            </button>
+
+            <div class="answer hidden px-5 pb-5 text-gray-600 leading-relaxed">
+                Study materials can be accessed through the college
+                student portal or LMS. Faculty members may also provide
+                notes and additional resources.
+            </div>
+
+        </div>
+
+
+        <!-- FAQ 2 -->
+        <div class="faq bg-white rounded-2xl shadow-lg mb-4 overflow-hidden">
+
+            <button
+                class="question w-full flex justify-between items-center p-5 text-left font-semibold text-gray-800 hover:bg-indigo-50 transition">
+
+                <span>📝 How can I register for examinations?</span>
+
+                <span class="arrow text-2xl transition-transform duration-300">
+                    ↓
+                </span>
+
+            </button>
+
+            <div class="answer hidden px-5 pb-5 text-gray-600 leading-relaxed">
+                Log in to the student portal, open the examination
+                section, fill in the required details and submit
+                the examination form.
+            </div>
+
+        </div>
+
+
+        <!-- FAQ 3 -->
+        <div class="faq bg-white rounded-2xl shadow-lg mb-4 overflow-hidden">
+
+            <button
+                class="question w-full flex justify-between items-center p-5 text-left font-semibold text-gray-800 hover:bg-indigo-50 transition">
+
+                <span>📅 Where can I find the timetable?</span>
+
+                <span class="arrow text-2xl transition-transform duration-300">
+                    ↓
+                </span>
+
+            </button>
+
+            <div class="answer hidden px-5 pb-5 text-gray-600 leading-relaxed">
+                The latest timetable is available on the college
+                website and student portal.
+            </div>
+
+        </div>
+
+
+        <!-- FAQ 4 -->
+        <div class="faq bg-white rounded-2xl shadow-lg mb-4 overflow-hidden">
+
+            <button
+                class="question w-full flex justify-between items-center p-5 text-left font-semibold text-gray-800 hover:bg-indigo-50 transition">
+
+                <span>🎯 How can I check my attendance?</span>
+
+                <span class="arrow text-2xl transition-transform duration-300">
+                    ↓
+                </span>
+
+            </button>
+
+            <div class="answer hidden px-5 pb-5 text-gray-600 leading-relaxed">
+                You can check your subject-wise attendance by
+                logging into the student portal.
+            </div>
+
+        </div>
+
+
+        <!-- FAQ 5 -->
+        <div class="faq bg-white rounded-2xl shadow-lg mb-4 overflow-hidden">
+
+            <button
+                class="question w-full flex justify-between items-center p-5 text-left font-semibold text-gray-800 hover:bg-indigo-50 transition">
+
+                <span>💬 How can I contact my faculty?</span>
+
+                <span class="arrow text-2xl transition-transform duration-300">
+                    ↓
+                </span>
+
+            </button>
+
+            <div class="answer hidden px-5 pb-5 text-gray-600 leading-relaxed">
+                You can contact your faculty during college hours
+                or use the official communication channels provided
+                by your department.
+            </div>
+
+        </div>
+
+
+        <!-- Footer -->
+        <p class="text-center text-white/80 mt-8">
+            Click a question to view the answer
+        </p>
+
+    </div>
+
+
+    <!-- JavaScript -->
+    <script>
+
+        // Select all FAQ elements
+        const faqs = document.querySelectorAll(".faq");
+
+        // Add click event to every FAQ
+        faqs.forEach(function(faq) {
+
+            // Find question, answer and arrow
+            const question = faq.querySelector(".question");
+            const answer = faq.querySelector(".answer");
+            const arrow = faq.querySelector(".arrow");
+
+            // Add click event listener
+            question.addEventListener("click", function() {
+
+                // Close all other FAQs
+                faqs.forEach(function(otherFaq) {
+
+                    if (otherFaq !== faq) {
+
+                        otherFaq
+                            .querySelector(".answer")
+                            .classList.add("hidden");
+
+                        otherFaq
+                            .querySelector(".arrow")
+                            .classList.remove("rotate-180");
+                    }
+
+                });
+
+
+                // Toggle current answer
+                answer.classList.toggle("hidden");
+
+                // Rotate arrow
+                arrow.classList.toggle("rotate-180");
+
+            });
+
+        });
+
+    </script>
+
+</body>
+</html>
