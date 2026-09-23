@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Personal To-Do List</title>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="min-h-screen bg-slate-100 flex justify-center p-6">
+
+    <!-- Main Application -->
+    <div class="w-full max-w-xl mt-10">
+
+        <!-- Header -->
+        <div class="bg-indigo-600 text-white rounded-t-2xl p-6">
+
+            <h1 class="text-3xl font-bold">
+                My To-Do List (Tejasvi_IT25113)
+            </h1>
+
+            <p class="mt-1 text-indigo-100">
+                Organize your academic and personal tasks
+            </p>
+
+        </div>
+
+
+        <!-- Task Area -->
+        <div class="bg-white rounded-b-2xl shadow-lg p-6">
+
+            <!-- Input Section -->
+            <div class="flex gap-3 mb-6">
+
+                <input
+                    id="taskInput"
+                    type="text"
+                    placeholder="Enter your task..."
+                    class="flex-1 border border-gray-300 rounded-lg
+                           px-4 py-3 focus:outline-none
+                           focus:ring-2 focus:ring-indigo-400"
+                >
+
+                <button
+                    id="addButton"
+                    class="bg-indigo-600 text-white px-5 rounded-lg
+                           hover:bg-indigo-700 transition"
+                >
+                    Add
+                </button>
+
+            </div>
+
+
+            <!-- Task List -->
+            <div id="taskList" class="space-y-3">
+
+                <!-- New tasks will be inserted here -->
+
+            </div>
+
+
+            <!-- Message when list is empty -->
+            <p
+                id="emptyText"
+                class="text-center text-gray-400 py-5"
+            >
+                No tasks added yet.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- ================= JAVASCRIPT ================= -->
+
+    <script>
+
+        // Select HTML elements
+        const taskInput = document.getElementById("taskInput");
+        const addButton = document.getElementById("addButton");
+        const taskList = document.getElementById("taskList");
+        const emptyText = document.getElementById("emptyText");
+
+
+        // Add a new task
+        function createTask() {
+
+            const taskValue = taskInput.value.trim();
+
+
+            // Prevent empty tasks
+            if (taskValue === "") {
+
+                alert("Please enter a task.");
+
+                taskInput.focus();
+
+                return;
+            }
+
+
+            // Create the main task container
+            const taskItem = document.createElement("div");
+
+            taskItem.className =
+                "flex items-center gap-3 p-4 " +
+                "bg-slate-50 border border-gray-200 " +
+                "rounded-xl";
+
+
+            // Create checkbox
+            const checkBox = document.createElement("input");
+
+            checkBox.type = "checkbox";
+
+            checkBox.className =
+                "w-5 h-5 accent-indigo-600 cursor-pointer";
+
+
+            // Create task text
+            const taskText = document.createElement("span");
+
+            taskText.textContent = taskValue;
+
+            taskText.className =
+                "flex-1 text-gray-700";
+
+
+            // Create completed label
+            const completedLabel = document.createElement("span");
+
+            completedLabel.textContent = "Completed";
+
+            completedLabel.className =
+                "hidden text-xs font-semibold " +
+                "bg-green-100 text-green-600 " +
+                "px-2 py-1 rounded-full";
+
+
+            // Create delete button
+            const deleteButton = document.createElement("button");
+
+            deleteButton.textContent = "Delete";
+
+            deleteButton.className =
+                "text-sm text-red-500 font-medium " +
+                "hover:text-red-700";
+
+
+            // Checkbox event
+            checkBox.addEventListener("change", function () {
+
+                if (checkBox.checked) {
+
+                    // Strike through completed task
+                    taskText.classList.add(
+                        "line-through",
+                        "text-gray-400"
+                    );
+
+                    // Show completed label
+                    completedLabel.classList.remove("hidden");
+
+                } else {
+
+                    // Restore normal task
+                    taskText.classList.remove(
+                        "line-through",
+                        "text-gray-400"
+                    );
+
+                    // Hide completed label
+                    completedLabel.classList.add("hidden");
+                }
+
+            });
+
+
+            // Delete event
+            deleteButton.addEventListener("click", function () {
+
+                taskItem.remove();
+
+                showEmptyMessage();
+
+            });
+
+
+            // Add elements to task item
+            taskItem.appendChild(checkBox);
+            taskItem.appendChild(taskText);
+            taskItem.appendChild(completedLabel);
+            taskItem.appendChild(deleteButton);
+
+
+            // Display the task
+            taskList.appendChild(taskItem);
+
+
+            // Clear input
+            taskInput.value = "";
+
+            taskInput.focus();
+
+
+            // Hide empty message
+            showEmptyMessage();
+
+        }
+
+
+        // Show empty message only when there are no tasks
+        function showEmptyMessage() {
+
+            if (taskList.children.length === 0) {
+
+                emptyText.classList.remove("hidden");
+
+            } else {
+
+                emptyText.classList.add("hidden");
+            }
+
+        }
+
+
+        // Add button event
+        addButton.addEventListener("click", createTask);
+
+
+        // Add task using Enter key
+        taskInput.addEventListener("keydown", function(event) {
+
+            if (event.key === "Enter") {
+
+                createTask();
+
+            }
+
+        });
+
+    </script>
+
+</body>
+
+</html>
