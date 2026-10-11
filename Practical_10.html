@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SkillSwap Campus</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-slate-100 text-slate-800">
+
+    <!-- Header -->
+    <header class="bg-indigo-700 p-4 text-white">
+        <div class="mx-auto flex max-w-5xl flex-wrap items-center justify-between gap-3">
+            <h1 class="text-2xl font-bold">SkillSwap Campus</h1>
+            <nav class="flex gap-4 text-sm">
+                <a href="#skills" class="hover:underline">Explore Skills</a>
+                <a href="#addSkill" class="hover:underline">Add a Skill</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Welcome section -->
+    <section class="bg-indigo-600 px-4 py-12 text-center text-white">
+        <h2 class="text-3xl font-bold">Learn Something New. Teach What You Know.</h2>
+        <p class="mx-auto mt-3 max-w-2xl">Share your skills with other students and learn something new in return.</p>
+        <a href="#skills" class="mt-5 inline-block rounded-lg bg-white px-5 py-2 font-semibold text-indigo-700">Explore Skills</a>
+    </section>
+
+    <main class="mx-auto max-w-5xl px-4 py-8">
+        <!-- Search and filter -->
+        <section id="skills">
+            <h2 class="text-2xl font-bold">Available Skills</h2>
+            <div class="mt-4 grid gap-3 sm:grid-cols-2">
+                <input id="searchBox" type="text" placeholder="Search for a skill..."
+                    class="rounded-lg border border-slate-300 bg-white p-3 outline-indigo-500">
+                <select id="categoryBox" class="rounded-lg border border-slate-300 bg-white p-3">
+                    <option value="All">All Categories</option>
+                    <option value="Programming">Programming</option>
+                    <option value="Design">Design</option>
+                    <option value="Arts">Arts</option>
+                    <option value="Music">Music</option>
+                    <option value="Communication">Communication</option>
+                </select>
+            </div>
+            <p id="skillCount" class="mt-3 text-sm text-slate-500"></p>
+            <div id="skillList" class="mt-4 grid gap-4 sm:grid-cols-2 lg:grid-cols-3"></div>
+        </section>
+
+        <!-- Add a skill form -->
+        <section id="addSkill" class="mt-10 rounded-2xl bg-white p-6 shadow-sm">
+            <h2 class="text-2xl font-bold">Share Your Skill</h2>
+            <p class="mt-1 text-sm text-slate-500">Tell other students what you can teach and what you want to learn.</p>
+
+            <form id="skillForm" class="mt-5 grid gap-4 sm:grid-cols-2">
+                <div>
+                    <label for="studentName" class="mb-1 block font-semibold">Your Name *</label>
+                    <input id="studentName" required class="w-full rounded-lg border border-slate-300 p-3" placeholder="Enter your name">
+                </div>
+                <div>
+                    <label for="teachSkill" class="mb-1 block font-semibold">Skill You Can Teach *</label>
+                    <input id="teachSkill" required class="w-full rounded-lg border border-slate-300 p-3" placeholder="e.g. Java">
+                </div>
+                <div>
+                    <label for="learnSkill" class="mb-1 block font-semibold">Skill You Want to Learn *</label>
+                    <input id="learnSkill" required class="w-full rounded-lg border border-slate-300 p-3" placeholder="e.g. Graphic Design">
+                </div>
+                <div>
+                    <label for="category" class="mb-1 block font-semibold">Category *</label>
+                    <select id="category" required class="w-full rounded-lg border border-slate-300 bg-white p-3">
+                        <option value="">Choose a category</option>
+                        <option value="Programming">Programming</option>
+                        <option value="Design">Design</option>
+                        <option value="Arts">Arts</option>
+                        <option value="Music">Music</option>
+                        <option value="Communication">Communication</option>
+                    </select>
+                </div>
+                <div class="sm:col-span-2">
+                    <label for="description" class="mb-1 block font-semibold">Short Description</label>
+                    <textarea id="description" rows="3" class="w-full rounded-lg border border-slate-300 p-3" placeholder="What can you help someone learn?"></textarea>
+                </div>
+                <div class="sm:col-span-2">
+                    <button type="submit" class="rounded-lg bg-indigo-700 px-5 py-3 font-semibold text-white hover:bg-indigo-800">Add My Skill</button>
+                    <p id="message" class="mt-3 text-sm"></p>
+                </div>
+            </form>
+        </section>
+
+        <!-- Requests -->
+        <section class="mt-10 rounded-2xl bg-white p-6 shadow-sm">
+            <h2 class="text-2xl font-bold">My Skill Requests</h2>
+            <p class="mt-1 text-sm text-slate-500">Requests you make will appear below.</p>
+            <ul id="requestList" class="mt-4 list-inside list-disc space-y-2"></ul>
+        </section>
+    </main>
+
+    <footer class="mt-10 bg-slate-800 p-5 text-center text-sm text-white">
+        SkillSwap Campus | Learn together, grow together.
+    </footer>
+
+    <script>
+        // Sample skills to display when the page opens
+        let skills = [
+            {
+                name: "Riya",
+                teach: "Java Programming",
+                learn: "Graphic Design",
+                category: "Programming",
+                description: "I can teach Java basics and simple programs."
+            },
+            {
+                name: "Arjun",
+                teach: "Graphic Design",
+                learn: "Web Development",
+                category: "Design",
+                description: "Learn poster design, colours, and layouts."
+            },
+            {
+                name: "Meera",
+                teach: "Public Speaking",
+                learn: "Video Editing",
+                category: "Communication",
+                description: "Let's practise presentations and speaking confidently."
+            },
+            {
+                name: "Kabir",
+                teach: "Guitar Basics",
+                learn: "Photography",
+                category: "Music",
+                description: "I can help beginners learn basic guitar chords."
+            },
+            {
+                name: "Anaya",
+                teach: "Sketching",
+                learn: "Java Programming",
+                category: "Arts",
+                description: "Learn drawing, pencil shading, and sketching."
+            }
+        ];
+
+        // This array stores the requests made by the user
+        let requests = [];
+
+        // Get HTML elements by their IDs
+        const skillList = document.getElementById("skillList");
+        const searchBox = document.getElementById("searchBox");
+        const categoryBox = document.getElementById("categoryBox");
+        const skillCount = document.getElementById("skillCount");
+
+        // Display skill cards on the webpage
+        function showSkills() {
+            skillList.innerHTML = "";
+
+            let searchText = searchBox.value.toLowerCase();
+            let selectedCategory = categoryBox.value;
+            let shownSkills = 0;
+
+            for (let i = 0; i < skills.length; i++) {
+                let skill = skills[i];
+                let skillText = (skill.name + " " + skill.teach + " " + skill.learn).toLowerCase();
+
+                // Show only skills matching the search and category
+                if (skillText.includes(searchText) &&
+                    (selectedCategory === "All" || skill.category === selectedCategory)) {
+
+                    shownSkills++;
+
+                    skillList.innerHTML += `
+                        <div class="rounded-xl border border-slate-200 bg-white p-5 shadow-sm">
+                            <span class="rounded-full bg-indigo-100 px-3 py-1 text-xs font-semibold text-indigo-700">${skill.category}</span>
+                            <h3 class="mt-3 text-lg font-bold">${skill.teach}</h3>
+                            <p class="mt-1 text-sm text-slate-500">Shared by ${skill.name}</p>
+                            <p class="mt-3 text-sm">${skill.description}</p>
+                            <p class="mt-3 rounded-lg bg-slate-100 p-3 text-sm"><b>Wants to learn:</b> ${skill.learn}</p>
+                            <button onclick="sendRequest(${i})" class="mt-4 w-full rounded-lg bg-indigo-700 px-4 py-2 font-semibold text-white hover:bg-indigo-800">Request Skill Exchange</button>
+                        </div>
+                    `;
+                }
+            }
+
+            skillCount.textContent = shownSkills + " skill opportunity/ies found.";
+
+            if (shownSkills === 0) {
+                skillList.innerHTML = '<p class="col-span-full rounded-lg bg-white p-5 text-slate-500">No skills found. Try another search.</p>';
+            }
+        }
+
+        // Add a request to the request list
+        function sendRequest(index) {
+            let skill = skills[index];
+            requests.push(skill.teach + " from " + skill.name);
+
+            let requestList = document.getElementById("requestList");
+            requestList.innerHTML = "";
+
+            for (let i = 0; i < requests.length; i++) {
+                requestList.innerHTML += "<li>" + requests[i] + " — <span class='font-semibold text-amber-600'>Pending</span></li>";
+            }
+
+            alert("Your skill exchange request has been added!");
+        }
+
+        // Add a new skill when the form is submitted
+        document.getElementById("skillForm").addEventListener("submit", function(event) {
+            event.preventDefault();
+
+            let newSkill = {
+                name: document.getElementById("studentName").value.trim(),
+                teach: document.getElementById("teachSkill").value.trim(),
+                learn: document.getElementById("learnSkill").value.trim(),
+                category: document.getElementById("category").value,
+                description: document.getElementById("description").value.trim()
+            };
+
+            if (newSkill.name === "" || newSkill.teach === "" || newSkill.learn === "" || newSkill.category === "") {
+                document.getElementById("message").textContent = "Please fill in all required fields.";
+                document.getElementById("message").className = "mt-3 text-sm text-red-600";
+                return;
+            }
+
+            skills.push(newSkill);
+            showSkills();
+
+            document.getElementById("message").textContent = "Your skill has been added successfully!";
+            document.getElementById("message").className = "mt-3 text-sm text-green-600";
+            document.getElementById("skillForm").reset();
+        });
+
+        // Update the cards whenever the user searches or changes category
+        searchBox.addEventListener("input", showSkills);
+        categoryBox.addEventListener("change", showSkills);
+
+        // Show the initial skill cards
+        showSkills();
+    </script>
+</body>
+</html>
